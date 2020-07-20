@@ -48,6 +48,7 @@ class Session(models.Model):
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
     active = fields.Boolean(default=True)
+    color = fields.Integer()
 
 
 
@@ -117,7 +118,7 @@ class Session(models.Model):
     def _get_attendees_count(self):
         for r in self:
             r.attendees_count = len(r.attendee_ids)
-            
+
 
     @api.constrains('instructor_id', 'attendee_ids')
     def _check_instructor_not_in_attendees(self):
